@@ -1,7 +1,6 @@
 from cProfile import label
 import dataset
 import losses
-import model_GraNet
 import train
 import utils
 import torch
@@ -28,12 +27,12 @@ def flatten(t):
 
 if __name__ == '__main__':
 
-    #data=dataset.segDataset(cfg.root+'Train/', l=10, s=cfg.h, seq_len=cfg.seq_len)
+    #data=dataset.segDataset(cfg.file, l=10, s=cfg.h)
     #imgs, mask = data[0]
-###
-    #fig, ax = plt.subplots(nrows=1, ncols=6, sharex=True, sharey=True)
-    #for i in range(5):
-    #    ax[i].imshow(imgs[0,i,:,:], origin='lower', cmap='gray')
+####
+    #fig, ax = plt.subplots(nrows=1, ncols=3, sharex=True, sharey=True)
+    #for i in range(2):
+    #    ax[i].imshow(imgs[i,:,:], origin='lower', cmap='gray')
     #    ax[-1].imshow(mask, origin='lower')
     #plt.show()
 #
@@ -76,7 +75,7 @@ if __name__ == '__main__':
     #utils.test_centers(mask, c[:,0], c[:,1])
 
     ##Train a model using a config file 
-    #train.run(save_config=True, bilinear=True) # Unet upsampling mechanisim is Traspose convolution
+    train.run(save_config=True, bilinear=True) # Unet upsampling mechanisim is Traspose convolution
 
     #Test model
     #Initial summary
@@ -142,13 +141,13 @@ if __name__ == '__main__':
     #utils.test_Imax(imax_save, model_test1, bin_classes)
    
     #Training information
-    with open ('../Tests/Train_params_11_30_2022_05_33_30_Unet_plus_LSTM.npy', 'rb') as f:
-        metrics = np.load(f, allow_pickle=True)
+    #with open ('../Tests/Train_params_11_30_2022_05_33_30_Unet_plus_LSTM.npy', 'rb') as f:
+    #    metrics = np.load(f, allow_pickle=True)
     #    h_train_metrics = np.load(f, allow_pickle=True)
     #    h_val_metrics = np.load(f, allow_pickle=True)
 #####
     #print(training_info)
-    utils.metrics_plots(metrics, Title='Test Single Unet: mIoU')
+    #utils.metrics_plots(metrics, Title='Test Single Unet: mIoU')
     #utils.metrics_plots(metrics, Title='Test 2: Mean Intersection-over-Union (mIoU)')
 ##
     #h_lt=[]

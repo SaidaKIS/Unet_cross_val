@@ -57,8 +57,6 @@ class Up(nn.Module):
 
 
     def forward(self, x1, x2):
-        print(x1.shape)
-        print(x2.shape)
         x1 = self.up(x1)
 
         # input is CHW (channel, height, width)
@@ -70,7 +68,6 @@ class Up(nn.Module):
                         diffY // 2, diffY - diffY // 2])
 
         x = torch.cat((x2, x1), dim=1)
-        print(x.shape)
         return self.conv(x)
 
 class OutConv(nn.Module):
@@ -110,7 +107,6 @@ class UNet(nn.Module):
         x4 = self.down3(x3)
         x5 = self.down4(x4)
         x = self.up1(x5, x4)
-        print(x.shape)
         x = self.up2(x, x3)
         x = self.up3(x, x2)
         x = self.up4(x, x1)
